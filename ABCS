@@ -48,6 +48,7 @@ MODULE Module1
         MoveL p30, vmax, fine, tool0;
         MoveL p40, vmax, fine, tool0;
         MoveL p50, vmax, fine, tool0;
+        MoveJ p10, vmax, fine, tool0;
         MoveJ preturn, vmax, fine, tool0;
         MoveJ p60, vmax, fine, tool0;
         MoveL p70, vmax, fine, tool0;
@@ -56,10 +57,13 @@ MODULE Module1
         MoveJ preturn, vmax, fine, tool0;
         MoveJ p110, vmax, fine, tool0;
         MoveC p120, P130, vmax, fine, tool0;
+        MoveC p120, P110, vmax, fine, tool0;
         MoveJ preturn, vmax, fine, tool0;
         MoveL p140, vmax, fine, tool0;
         MoveC p150, P160, vmax, fine, tool0;
         MoveC p170, P180, vmax, fine, tool0;
+        MoveC p170, P160, vmax, fine, tool0;
+        MoveC p150, P140, vmax, fine, tool0;
         MoveJ preturn, vmax, fine, tool0;
         MoveJ phome, vmax, fine, tool0;
     ENDPROC
