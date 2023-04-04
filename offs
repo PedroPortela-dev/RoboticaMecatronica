@@ -1,0 +1,47 @@
+MODULE Module1
+    CONST robtarget p10:=[[639.86,-200.00,628.07],[0.500001,3.85767E-06,0.866025,-8.1698E-06],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget phome:=[[205.97,-0.43,679.40],[0.500002,-1.72274E-06,0.866024,-2.13775E-07],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    !***********************************************************
+    !
+    ! Module:  Module1
+    !
+    ! Description:
+    !   <Insert description here>
+    !
+    ! Author: Eixo integrativo
+    !
+    ! Version: 1.0
+    !
+    !***********************************************************
+    
+    
+    !***********************************************************
+    !
+    ! Procedure main
+    !
+    !   This is the entry point of your program
+    !
+    !***********************************************************
+    PROC main()
+        MoveJ phome, vmax, fine, tool0;
+        MoveJ Offs(p10, -200, 75, -150), vmax, fine, tool0;
+        !Quadrado
+        MoveJ p10, vmax, fine, tool0;
+        MoveL Offs(p10, 0, 150, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 150, -150), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 0, -150), vmax, fine, tool0;
+        MoveL p10, vmax, fine, tool0;
+        !Triangulo
+        MoveL Offs(p10, 0, 75, -150), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 150, 0), vmax, fine, tool0;
+        !Retorno
+        MoveJ Offs(p10, -200, 75, -150), vmax, fine, tool0;
+        !Circulo
+        MoveJ Offs(p10, 0, 75, -150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 150, -75), Offs(p10, 0, 75, 0), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 0, -75), Offs(p10, 0, 75, -150), vmax, fine, tool0;
+        !phome
+        MoveJ Offs(p10, -200, 75, -150), vmax, fine, tool0;
+        MoveJ phome, vmax, fine, tool0;
+    ENDPROC
+ENDMODULE
