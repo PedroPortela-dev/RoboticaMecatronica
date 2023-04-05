@@ -1,0 +1,54 @@
+MODULE Module1
+    CONST robtarget p10:=[[639.86,-200.00,475.74],[0.500001,4.20724E-06,0.866025,-8.79487E-06],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget phome:=[[205.97,-0.43,679.40],[0.500002,-1.72274E-06,0.866024,-2.13775E-07],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    !***********************************************************
+    !
+    ! Module:  Module1
+    !
+    ! Description:
+    !   <Insert description here>
+    !
+    ! Author: Eixo integrativo
+    !
+    ! Version: 1.0
+    !
+    !***********************************************************
+    
+    
+    !***********************************************************
+    !
+    ! Procedure main
+    !
+    !   This is the entry point of your program
+    !
+    !***********************************************************
+    PROC main()
+        MoveJ phome, vmax, fine, tool0;
+        MoveJ Offs(p10, -200, 150, 0), vmax, fine, tool0;
+        !R
+        MoveJ p10, vmax, fine, tool0;
+        MoveL Offs(p10, 0, 0, 150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 50, 112.5), Offs(p10, 0, 0, 75), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 50, 0), vmax, fine, tool0;
+        !Retorno
+        MoveJ Offs(p10, -200, 150, 0), vmax, fine, tool0;
+        !W
+        MoveJ Offs(p10, 0, 100, 150), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 125, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 150, 75), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 175, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 200, 150), vmax, fine, tool0;
+        !Retorno
+        MoveJ Offs(p10, -200, 150, 0), vmax, fine, tool0;
+        !G
+        MoveJ Offs(p10, 0, 350, 150), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 300, 150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 250, 75), Offs(p10, 0, 300, 0), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 350, 37.5), Offs(p10, 0, 300, 75), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 350, 75), vmax, fine, tool0;
+        !Final
+        MoveJ Offs(p10, -200, 150, 0), vmax, fine, tool0;
+        MoveJ phome, vmax, fine, tool0;
+        
+    ENDPROC
+ENDMODULE
