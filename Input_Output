@@ -1,0 +1,79 @@
+MODULE Module1
+    CONST robtarget p10:=[[639.86,-200.00,655.30],[0.500001,3.77523E-06,0.866025,-8.30828E-06],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget phome:=[[205.97,-0.43,679.40],[0.500002,-1.72274E-06,0.866024,-2.13775E-07],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    PROC main()
+        TPErase;
+        TPWrite "Olá operador, este programa foi criado por Pedro Portela e Jesus Cristo";
+        WaitTime 7.0;
+        TPErase;
+        WHILE (di1=0 AND di2=0) DO
+        ENDWHILE
+        principal;
+    ENDPROC
+    
+    PROC principal()
+        home;
+        TPReadNum reg1, "Deseja realizar quantas vezes?";
+        IF  di1=1 THEN 
+            FOR reg3 FROM 1 TO reg1 DO
+                bandeiraBrazil;
+            ENDFOR
+        ELSEIF di2=1 THEN
+            FOR reg3 FROM 1 TO reg1 DO
+                bandeiraJapao;
+            ENDFOR
+        ENDIF
+        home;
+        TPErase;
+        TPReadFK reg2, "A ROTINA FOI EXECUTADA CORRETAMENTE?", stEmpty, "SIM", stEmpty, "NAO", stEmpty;
+        TPErase;
+        IF reg2=2 THEN
+            Set do0;
+            TPWrite "ROTINA FINALIZADA COM SUCESSO";
+            main;
+        ELSEIF reg2=4 THEN
+            principal;
+        ENDIF
+    ENDPROC
+    PROC retangulo()
+        MoveJ p10, vmax, fine, tool0;
+        MoveL Offs(p10, 0, 300, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 300, -200), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 0, -200), vmax, fine, tool0;
+        MoveL p10, vmax, fine, tool0;
+    ENDPROC
+    PROC paralelograma()
+        MoveJ Offs(p10, 0, 150, -25), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 275, -100), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 150, -175), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 25, -100), vmax, fine, tool0;
+        MoveJ Offs(p10, 0, 150, -25), vmax, fine, tool0;
+    ENDPROC
+    PROC circulo()
+        MoveJ Offs(p10, 0, 150, -50), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 200, -100), Offs(p10, 0, 150, -150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 100, -100), Offs(p10, 0, 150, -50), vmax, fine, tool0;
+    ENDPROC
+    PROC bandeiraBrazil()
+        retorno;
+        retangulo;
+        retorno;
+        paralelograma;
+        retorno;
+        circulo;
+        retorno;
+    ENDPROC
+    PROC home()
+        MoveJ phome, vmax, fine, tool0;
+    ENDPROC
+    PROC retorno()
+        MoveJ Offs(p10, -200, 150, -150), vmax, fine, tool0;
+    ENDPROC
+    PROC bandeiraJapao()
+        retorno;
+        retangulo;
+        retorno;
+        circulo;
+        retorno;
+    ENDPROC
+ENDMODULE
