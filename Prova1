@@ -1,0 +1,148 @@
+MODULE Module1
+    CONST robtarget p10:=[[639.86,-200.00,655.30],[0.500001,3.77523E-06,0.866025,-8.30828E-06],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget phome:=[[205.97,-0.43,679.40],[0.500002,-1.72274E-06,0.866024,-2.13775E-07],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    !MAIN
+    PROC main()
+        reg4:=0;
+        reg5:=0;
+        IF di0=1 THEN
+            principal;
+        ELSE
+            contrario;
+        ENDIF
+    ENDPROC
+    !QUANTAS VEZES DESEJA REALIZAR
+    PROC principal()
+        TPReadNum reg1, "Deseja realizar quantas vezes?";
+        TPErase;
+        subPrincipal;
+    ENDPROC
+    !PARTE PRINCIPAL
+    PROC subPrincipal()
+        !EXECUÇÃO
+        home;
+        retorno;
+        reg2:=0;
+        WHILE (reg2 < reg1) DO
+            IF reg4=0 THEN
+                SE;
+            ENDIF
+            IF reg5=0 THEN
+                p079;
+            ENDIF
+            Incr reg2;
+        ENDWHILE
+        home;
+        !EXECUÇÃO CORRETA
+        TPReadFK reg3, "A ROTINA FOI EXECUTADA CORRETAMENTE?", stEmpty, "SIM", stEmpty, "NAO", stEmpty;
+        TPErase;
+        !CONDIÇÃO
+        IF reg3=2 THEN
+            !SIM
+            set do0;
+            WaitTime 0.5;
+            Reset do0;
+            WaitTime 0.5;
+            Set do0;
+            WaitTime 0.5;
+            Reset do0;
+            TPWrite "PROGRAMA DESENVOLVIDO POR PEDRO PORTELA FINALIZADO COM SUCESSO";
+            TPErase;
+            !VOLTAR PARA O PRINCIPAL
+            WHILE (end1=0) DO
+            ENDWHILE
+            main;
+        ELSEIF reg3=4 THEN
+            !NÃO
+            set do0;
+            WaitTime 5;
+            Reset do0;
+            TPReadFK reg3, "QUANTAS VEZES DESEJA RODAR NOVAMENTE?", stEmpty, "1", stEmpty, "3", stEmpty;
+            TPErase;
+            IF reg3=2 THEN
+                reg1:=1;
+            ELSEIF reg3=4 THEN
+                reg1:=3;
+            ENDIF
+            !VOLTAR PARA A EXECUÇÃO
+            subPrincipal;
+        ENDIF
+    ENDPROC
+    !REALIZAR AS PARTES
+    PROC contrario()
+        !QUAL PARTE O OPERADOR DESEJA
+        TPReadFK reg3, "QUAL SUB ROTINA DESEJA EXECUTAR?", stEmpty, "SE", stEmpty, "079", stEmpty;
+        TPErase;
+        IF reg3=2 THEN
+            reg5:=1;
+        ELSEIF reg3=4 THEN
+            reg4:=1;
+        ENDIF
+        !IR PARA O PRINCIPAL
+        principal;
+    ENDPROC
+    !ESCREVER SE
+    PROC SE()
+        S;
+        retorno;
+        E;
+        retorno;
+    ENDPROC
+    !ESCREVER 079
+    PROC p079()
+        p0;
+        retorno;
+        p7;
+        retorno;
+        p9;
+        retorno;
+    ENDPROC
+    !S
+    PROC S()
+        MoveJ p10, vmax, fine, tool0;
+        MoveC Offs(p10, 0, -50, -50), Offs(p10, 0, 0, -100), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 50, -150), Offs(p10, 0, 0, -200), vmax, fine, tool0;
+    ENDPROC
+    !E
+    PROC E()
+        MoveJ Offs(p10, 0, 175, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 75, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 75, -200), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 175, -200), vmax, fine, tool0;
+        retorno;
+        MoveL Offs(p10, 0, 175, -100), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 75, -100), vmax, fine, tool0;
+    ENDPROC
+    !0
+    PROC p0()
+        MoveJ Offs(p10, 0, 200, -50), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 200, -150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 250, -200), Offs(p10, 0, 300, -150), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 300, -50), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 250, 0), Offs(p10, 0, 200, -50), vmax, fine, tool0;
+    ENDPROC
+    !7
+    PROC p7()
+        MoveJ Offs(p10, 0, 325, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 425, 0), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 325, -200), vmax, fine, tool0;
+    ENDPROC
+    !9
+    PROC p9()
+        MoveJ Offs(p10, 0, 550, -50), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 500, 0), Offs(p10, 0, 450, -50), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 500, -100), Offs(p10, 0, 550, -50), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 550, -150), vmax, fine, tool0;
+        MoveC Offs(p10, 0, 535, -185), Offs(p10, 0, 500, -200), vmax, fine, tool0;
+        MoveL Offs(p10, 0, 450, -200), vmax, fine, tool0;
+        
+    ENDPROC
+    !POSIÇÃO HOME
+    PROC home()
+        MoveJ phome, vmax, fine, tool0;
+    ENDPROC
+    !POSIÇÃO RETORNO
+    PROC retorno()
+        MoveJ Offs(p10, -200, 150, -150), vmax, fine, tool0;
+    ENDPROC
+ENDMODULE
